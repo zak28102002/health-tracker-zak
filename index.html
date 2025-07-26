@@ -1,1 +1,33 @@
-sssizdsssssssssssssssssssssssssssssssssssssssssss
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Health Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Health Tracker</h1>
+
+  <section>
+    <h2>🍽️ Food Log</h2>
+    <input type="text" id="foodInput" placeholder="What did you eat?">
+    <button onclick="addFood()">Add</button>
+    <ul id="foodList"></ul>
+  </section>
+
+  <section>
+    <h2>💧 Water Tracker</h2>
+    <p id="waterCount">0 cups</p>
+    <button onclick="addWater()">Add Cup</button>
+  </section>
+
+  <section>
+    <h2>👟 Step Count</h2>
+    <input type="number" id="stepInput" placeholder="Steps today">
+    <button onclick="saveSteps()">Save</button>
+    <p id="stepDisplay"></p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
