@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+<style>
+  * {
+    font-family: 'Inter', sans-serif;
+  }
+</style>
   <meta charset="UTF-8">
   <title>Health Tracker</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
+
+
 <body>
+   <nav>
+  <div class="logo">🏥 Health Tracker</div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Login</a></li>
+    <li><a href="#">Register</a></li>
+  </ul>
+</nav>
+
+
   <h1>Health Tracker</h1>
 
   <section>
@@ -27,6 +46,47 @@
     <button onclick="saveSteps()">Save</button>
     <p id="stepDisplay"></p>
   </section>
+
+  <section>
+  <h2>🙂 Mood Tracker</h2>
+  <select id="moodSelect">
+    <option value="">How do you feel today?</option>
+    <option value="😃 Happy">😃 Happy</option>
+    <option value="😐 Okay">😐 Okay</option>
+    <option value="😔 Sad">😔 Sad</option>
+    <option value="😠 Angry">😠 Angry</option>
+    <option value="😴 Tired">😴 Tired</option>
+  </select>
+  <button onclick="saveMood()">Save Mood</button>
+  <p id="moodDisplay"></p>
+</section>
+
+<section>
+  <h2>🔁 Reset All</h2>
+  <button onclick="resetAll()">Clear Everything</button>
+</section>
+
+<section>
+  <h2>📋 Daily Health Summary</h2>
+  <div id="summaryBox">
+    <p id="dailyTip" style="margin-top: 15px; font-style: italic; color: #444;"></p>
+    <p id="summaryFood">🍽️ Foods Logged: 0</p>
+    <p id="summaryWater">💧 Water Drank: 0 cups</p>
+    <p id="summarySteps">👟 Steps Taken: 0</p>
+    <p id="summaryMood">🙂 Mood: Not set</p>
+  </div>
+</section>
+
+<section>
+  <h2>🎯 Daily Goals</h2>
+  <ul id="goalsList"></ul>
+
+  <input type="text" id="newGoalInput" placeholder="Add new goal...">
+  <button onclick="addGoal()">➕ Add Goal</button>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
   <script src="script.js"></script>
 </body>
