@@ -15,6 +15,37 @@ nav {
   font-weight: bold;
 }
 
+section:nth-child(1) { background-color: #fef7f1; }  
+section:nth-child(2) { background-color: #e6f7ff; }  
+section:nth-child(3) { background-color: #f1fff1; }  
+section:nth-child(4) { background-color: #fff1f7; }  
+
+
+section {
+  margin: 25px auto;
+  padding: 25px;
+  border-radius: 16px;
+  max-width: 600px;
+  background-color: #ffffffd9;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  backdrop-filter: blur(4px);
+}
+
+.confirmation {
+  color: green;
+  font-style: italic;
+  margin-top: 10px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.confirmation {
+  color: green;
+  font-style: italic;
+  margin-top: 10px;
+  transition: opacity 0.5s ease;
+}
+
 .nav-links {
   list-style: none;
   display: flex;

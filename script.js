@@ -8,6 +8,13 @@ function addFood() {
     localStorage.setItem("foods", JSON.stringify(foods));
     displayFoods();
     input.value = "";
+
+    //confirmation message
+    const confirmMsg = document.getElementById("foodConfirmation");
+    confirmMsg.textContent = `✅ "${food}" added!`;
+    setTimeout(() => {
+      confirmMsg.textContent = "";
+    }, 2000);
   }
 }
 
@@ -32,11 +39,41 @@ function addWater() {
   document.getElementById("waterCount").textContent = `${water} cups`;
 }
 
+function logWater() {
+  let cups = parseInt(localStorage.getItem("water") || "0");
+  cups++;
+  localStorage.setItem("water", cups);
+
+  const waterConfirm = document.getElementById("waterConfirmation");
+  waterConfirm.textContent = `💧 ${cups} cup(s) saved!`;
+  setTimeout(() => {
+    waterConfirm.textContent = "";
+  }, 2000);
+
+  updateSummary();
+}
+
 //step counter
 function saveSteps() {
   const stepInput = document.getElementById("stepInput").value;
   localStorage.setItem("steps", stepInput);
   document.getElementById("stepDisplay").textContent = `You walked ${stepInput} steps today.`;
+}
+
+function logSteps() {
+  const steps = parseInt(document.getElementById("stepInput").value);
+  if (!isNaN(steps)) {
+    localStorage.setItem("steps", steps);
+    document.getElementById("stepDisplay").textContent = `You walked ${steps} steps today.`;
+
+    const stepConfirm = document.getElementById("stepsConfirmation");
+    stepConfirm.textContent = `👣 ${steps} steps saved!`;
+    setTimeout(() => {
+      stepConfirm.textContent = "";
+    }, 2000);
+
+    updateSummary();
+  }
 }
 
 window.onload = function () {
@@ -75,6 +112,20 @@ switch (savedMood) {
     break;
 }
 document.getElementById("dailyTip").textContent = tip;
+
+function logMood() {
+  const mood = document.getElementById("moodInput").value;
+  localStorage.setItem("mood", mood);
+  document.getElementById("moodDisplay").textContent = `You felt: ${mood}`;
+
+  const moodConfirm = document.getElementById("moodConfirmation");
+  moodConfirm.textContent = `✅ Mood saved: ${mood}`;
+  setTimeout(() => {
+    moodConfirm.textContent = "";
+  }, 2000);
+
+  updateSummary();
+}
 
 loadGoals(); 
 
@@ -136,19 +187,13 @@ window.onload = function () {
   const savedWater = parseInt(localStorage.getItem("water") || "0");
   const savedFoods = JSON.parse(localStorage.getItem("foods") || "[]");
 
-  if (savedWater >= 8) document.getElementById("goalWater").checked = true;
-if (savedSteps >= 6000) document.getElementById("goalSteps").checked = true;
-if (savedFoods.length >= 3) document.getElementById("goalFood").checked = true;
-
   document.getElementById("stepDisplay").textContent = `You walked ${savedSteps} steps today.`;
   document.getElementById("moodDisplay").textContent = `You felt: ${savedMood}`;
 
-  //Update Dailsummary Report
-  document.getElementById("summaryFood").textContent = `🍽️ Foods Logged: ${savedFoods.length}`;
-  document.getElementById("summaryWater").textContent = `💧 Water Drank: ${savedWater} cups`;
-  document.getElementById("summarySteps").textContent = `👟 Steps Taken: ${savedSteps}`;
-  document.getElementById("summaryMood").textContent = `🙂 Mood: ${savedMood}`;
+  updateSummary();
+  loadGoals(); // custom daily goals
 };
+
 setTimeout(() => {
   alert("🕒 Don’t forget to log your health today!");
 }, 180000); //shows after 3 minute
@@ -171,10 +216,22 @@ function loadGoals() {
     };
 
     const label = document.createElement("span");
-    label.textContent = " " + goal.text;
+    label.textContent = " " + goal.text + " ";
+
+    const deleteBtn = document.createElement("span");
+    deleteBtn.textContent = "❌";
+    deleteBtn.style.cursor = "pointer";
+    deleteBtn.style.marginLeft = "10px";
+    deleteBtn.onclick = () => {
+      savedGoals.splice(index, 1);
+      localStorage.setItem("dailyGoals", JSON.stringify(savedGoals));
+      loadGoals();
+    };
 
     li.appendChild(checkbox);
     li.appendChild(label);
+    li.appendChild(deleteBtn);
+
     goalsList.appendChild(li);
   });
 }
@@ -189,4 +246,16 @@ function addGoal() {
   localStorage.setItem("dailyGoals", JSON.stringify(savedGoals));
   input.value = "";
   loadGoals();
+}
+
+function updateSummary() {
+  const foods = JSON.parse(localStorage.getItem("foods") || "[]");
+  const cups = localStorage.getItem("water") || 0;
+  const steps = localStorage.getItem("steps") || 0;
+  const mood = localStorage.getItem("mood") || "Not set";
+
+  document.getElementById("summaryFood").textContent = `🍽️ Foods Logged: ${foods.length}`;
+  document.getElementById("summaryWater").textContent = `💧 Water Drank: ${cups} cups`;
+  document.getElementById("summarySteps").textContent = `👟 Steps Taken: ${steps}`;
+  document.getElementById("summaryMood").textContent = `🙂 Mood: ${mood}`;
 }

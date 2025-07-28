@@ -27,39 +27,44 @@
 
   <h1>Health Tracker</h1>
 
-  <section>
-    <h2>🍽️ Food Log</h2>
-    <input type="text" id="foodInput" placeholder="What did you eat?">
-    <button onclick="addFood()">Add</button>
-    <ul id="foodList"></ul>
-  </section>
+ <section>
+  <h2>🍽️ Log Food</h2>
+  <input type="text" id="foodInput" placeholder="Enter food">
+  <button onclick="addFood()">Log Food</button>
+  <p id="foodConfirmation" class="confirmation"></p>
+  <ul id="foodList"></ul>
+</section>
 
   <section>
-    <h2>💧 Water Tracker</h2>
-    <p id="waterCount">0 cups</p>
-    <button onclick="addWater()">Add Cup</button>
-  </section>
+  <h2>💧 Water Intake</h2>
+  <button onclick="logWater()">+1 Cup</button>
+  <p id="waterConfirmation" class="confirmation"></p>
+</section>
+
+
 
   <section>
-    <h2>👟 Step Count</h2>
-    <input type="number" id="stepInput" placeholder="Steps today">
-    <button onclick="saveSteps()">Save</button>
-    <p id="stepDisplay"></p>
-  </section>
+  <h2>👟 Step Tracker</h2>
+  <input type="number" id="stepInput" placeholder="Enter steps">
+  <button onclick="logSteps()">Log Steps</button>
+  <p id="stepsConfirmation" class="confirmation"></p>
+  <p id="stepDisplay"></p>
+</section>
 
   <section>
   <h2>🙂 Mood Tracker</h2>
-  <select id="moodSelect">
-    <option value="">How do you feel today?</option>
+  <select id="moodInput">
     <option value="😃 Happy">😃 Happy</option>
     <option value="😐 Okay">😐 Okay</option>
     <option value="😔 Sad">😔 Sad</option>
     <option value="😠 Angry">😠 Angry</option>
     <option value="😴 Tired">😴 Tired</option>
   </select>
-  <button onclick="saveMood()">Save Mood</button>
+  <button onclick="logMood()">Save Mood</button>
+  <p id="moodConfirmation" class="confirmation"></p>
   <p id="moodDisplay"></p>
 </section>
+
 
 <section>
   <h2>🔁 Reset All</h2>
@@ -67,15 +72,13 @@
 </section>
 
 <section>
-  <h2>📋 Daily Health Summary</h2>
-  <div id="summaryBox">
-    <p id="dailyTip" style="margin-top: 15px; font-style: italic; color: #444;"></p>
-    <p id="summaryFood">🍽️ Foods Logged: 0</p>
-    <p id="summaryWater">💧 Water Drank: 0 cups</p>
-    <p id="summarySteps">👟 Steps Taken: 0</p>
-    <p id="summaryMood">🙂 Mood: Not set</p>
-  </div>
+  <h2>📊 Daily Summary</h2>
+  <p id="summaryFood"></p>
+  <p id="summaryWater"></p>
+  <p id="summarySteps"></p>
+  <p id="summaryMood"></p>
 </section>
+
 
 <section>
   <h2>🎯 Daily Goals</h2>
