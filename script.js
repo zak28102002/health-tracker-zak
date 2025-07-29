@@ -259,3 +259,8 @@ function updateSummary() {
   document.getElementById("summarySteps").textContent = `👟 Steps Taken: ${steps}`;
   document.getElementById("summaryMood").textContent = `🙂 Mood: ${mood}`;
 }
+
+function printSummary() {
+  window.print();
+}
+

@@ -159,3 +159,26 @@ body::before {
   background: rgba(0, 0, 0, 0.2);
   z-index: -1;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #summarySection, #summarySection * {
+    visibility: visible;
+  }
+
+  #summarySection {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80%;
+    background-color: white;
+    padding: 20px;
+    font-size: 18px;
+  }
+}
+
